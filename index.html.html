@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Eid Mubarak</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Poppins&display=swap" rel="stylesheet">
+
+<style>
+body {
+  margin: 0;
+  font-family: 'Poppins', sans-serif;
+  background: radial-gradient(circle at top, #0f2027, #203a43, #2c5364);
+  color: white;
+  text-align: center;
+  overflow-x: hidden;
+}
+
+/* Moon */
+.moon {
+  font-size: 80px;
+  margin-top: 40px;
+  animation: float 4s infinite;
+}
+@keyframes float { 50% { transform: translateY(-15px); } }
+
+h1 {
+  font-family: 'Great Vibes', cursive;
+  font-size: 60px;
+  color: gold;
+}
+
+/* Buttons */
+button {
+  padding: 10px 15px;
+  margin: 6px;
+  border: none;
+  border-radius: 5px;
+  background: gold;
+  cursor: pointer;
+}
+button:hover { background: orange; }
+
+/* Card */
+.card {
+  background: rgba(255,255,255,0.1);
+  margin: 20px auto;
+  padding: 20px;
+  width: 80%;
+  border-radius: 12px;
+}
+
+/* Effects */
+.effect {
+  position: fixed;
+  top: 0;
+  font-size: 20px;
+  animation: drop 3s linear forwards;
+}
+@keyframes drop { to { transform: translateY(100vh); opacity: 0; } }
+
+/* Lantern */
+.lantern {
+  position: absolute;
+  top: -50px;
+  font-size: 28px;
+  animation: fall 8s linear infinite;
+}
+@keyframes fall { to { transform: translateY(110vh); } }
+
+footer {
+  position: fixed;
+  bottom: 10px;
+  width: 100%;
+  font-size: 13px;
+  color: #bbb;
+}
+</style>
+</head>
+
+<body>
+
+<div class="moon">🌙</div>
+
+<h1>Eid Mubarak</h1>
+
+<!-- Name prompt button -->
+<button onclick="greet()">Enter Your Name</button>
+
+<div class="card">
+  <p id="text">Click a button 👇</p>
+
+  <button onclick="getDua()">🤲 Get Dua</button>
+  <button onclick="ameen()">🤍 Say Ameen</button>
+  <button onclick="fireworks()">🎆 Fireworks</button>
+  <button onclick="surprise()">🎁 Surprise</button>
+</div>
+
+<footer>
+✨ Made by <strong>DenzDragon</strong> ✨
+</footer>
+
+<script>
+
+// Prompt + Alert Greeting
+function greet() {
+  let name = prompt("Enter your name:");
+  if (name) {
+    alert("Eid Mubarak, " + name + " ✨");
+  }
+}
+
+// Dua
+function getDua() {
+  let d = [
+    "May Allah accept your عبادات.",
+    "May your life be full of barakah.",
+    "May peace stay with you always.",
+    "May success follow you everywhere."
+  ];
+  document.getElementById("text").innerText =
+    d[Math.floor(Math.random()*d.length)];
+}
+
+// Ameen effect
+function ameen() {
+  for(let i=0;i<20;i++){
+    let e=document.createElement("div");
+    e.className="effect";
+    e.innerText="✨";
+    e.style.left=Math.random()*window.innerWidth+"px";
+    document.body.appendChild(e);
+    setTimeout(()=>e.remove(),3000);
+  }
+}
+
+// Fireworks
+function fireworks() {
+  for(let i=0;i<25;i++){
+    let f=document.createElement("div");
+    f.className="effect";
+    f.innerText="🎆";
+    f.style.left=Math.random()*window.innerWidth+"px";
+    document.body.appendChild(f);
+    setTimeout(()=>f.remove(),3000);
+  }
+}
+
+// Surprise
+function surprise() {
+  document.getElementById("text").innerText =
+    "🎉 Eid Surprise! Stay happy always!";
+}
+
+// Lantern animation
+function lantern(){
+  let l=document.createElement("div");
+  l.className="lantern";
+  l.style.left=Math.random()*window.innerWidth+"px";
+  l.innerText="🏮";
+  document.body.appendChild(l);
+  setTimeout(()=>l.remove(),8000);
+}
+setInterval(lantern,1200);
+
+</script>
+
+</body>
+</html>
