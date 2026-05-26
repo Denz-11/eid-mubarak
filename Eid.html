@@ -1,0 +1,1084 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>✨ Eid ul Adha Mubarak ✨</title>
+    <link href="https://fonts.googleapis.com/css2?family=El+Messiri:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Aref+Ruqaa:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --gold: #d4a745;
+            --gold-light: #f0d478;
+            --navy: #0a0a2e;
+            --card-bg: rgba(15, 15, 50, 0.55);
+            --dua-bg: rgba(212, 167, 69, 0.08);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            min-height: 100vh;
+            background: radial-gradient(ellipse at center, #0d0d35 0%, #07071f 30%, #030312 70%, #010108 100%);
+            font-family: 'El Messiri', 'Georgia', serif;
+            color: #e8e6f0;
+            overflow-x: hidden;
+            position: relative;
+            cursor: default;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            z-index: 0;
+            background:
+                radial-gradient(ellipse at center, transparent 50%, rgba(0, 0, 0, 0.7) 100%),
+                radial-gradient(ellipse at 70% 20%, rgba(30, 20, 80, 0.4) 0%, transparent 60%),
+                radial-gradient(ellipse at 30% 75%, rgba(20, 10, 60, 0.3) 0%, transparent 55%),
+                repeating-linear-gradient(45deg, rgba(255, 215, 0, 0.02) 0px, rgba(255, 215, 0, 0.02) 2px, transparent 2px, transparent 10px);
+        }
+
+        /* Golden overlay vignette */
+        body::after {
+            content: '';
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            z-index: 0;
+            background: radial-gradient(circle at 50% 40%, rgba(255, 200, 50, 0.03) 0%, transparent 70%);
+        }
+
+        /* Star canvas */
+        canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+            pointer-events: none;
+        }
+
+        /* Lanterns */
+        .lanterns {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 2;
+            overflow: hidden;
+        }
+
+        .lantern {
+            position: absolute;
+            bottom: -120px;
+            width: 40px;
+            height: 70px;
+            background: radial-gradient(ellipse at 50% 30%, #ffdd88, #e09020);
+            border-radius: 50% 50% 30% 30%;
+            box-shadow: 0 0 30px rgba(255, 180, 40, 0.8), 0 0 70px rgba(255, 140, 20, 0.5), inset 0 -10px 20px rgba(0, 0, 0, 0.3);
+            animation: riseLantern var(--duration) linear infinite;
+            animation-delay: var(--delay);
+            transform-origin: center bottom;
+            opacity: 0.85;
+        }
+
+        .lantern::before {
+            content: '';
+            position: absolute;
+            top: -12px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 30px;
+            height: 15px;
+            background: rgba(0, 0, 0, 0.7);
+            border-radius: 5px 5px 0 0;
+            box-shadow: 0 0 8px rgba(255, 200, 50, 0.5);
+        }
+
+        .lantern::after {
+            content: '';
+            position: absolute;
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 20px;
+            height: 15px;
+            background: rgba(0, 0, 0, 0.7);
+            border-radius: 0 0 50% 50%;
+            box-shadow: 0 0 10px rgba(255, 180, 40, 0.6);
+        }
+
+        .lantern .flame {
+            position: absolute;
+            top: -18px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 8px;
+            height: 14px;
+            background: #fff9e0;
+            border-radius: 50% 50% 30% 30%;
+            box-shadow: 0 0 15px #ffaa30, 0 0 30px #ff8800;
+            animation: flicker 0.3s infinite alternate;
+        }
+
+        @keyframes riseLantern {
+            0% {
+                transform: translateY(0) rotate(0deg);
+                opacity: 0;
+            }
+            10% {
+                opacity: 0.9;
+            }
+            90% {
+                opacity: 0.7;
+            }
+            100% {
+                transform: translateY(-120vh) rotate(15deg);
+                opacity: 0;
+            }
+        }
+
+        @keyframes flicker {
+            from {
+                transform: translateX(-50%) scale(1, 1);
+                opacity: 0.9;
+            }
+            to {
+                transform: translateX(-50%) scale(0.9, 1.2);
+                opacity: 1;
+            }
+        }
+
+        /* Floating takbeer */
+        .floating-takbeer {
+            position: fixed;
+            pointer-events: none;
+            z-index: 2;
+            font-family: 'Aref Ruqaa', 'El Messiri', serif;
+            font-size: 2.2rem;
+            color: rgba(247, 224, 138, 0.7);
+            text-shadow: 0 0 20px rgba(255, 200, 60, 0.5);
+            animation: floatTakbeer var(--dur) linear infinite;
+            white-space: nowrap;
+            opacity: 0;
+        }
+
+        @keyframes floatTakbeer {
+            0% {
+                transform: translateY(0) rotate(0deg);
+                opacity: 0;
+            }
+            20% {
+                opacity: 0.8;
+            }
+            80% {
+                opacity: 0.6;
+            }
+            100% {
+                transform: translateY(-120vh) rotate(20deg);
+                opacity: 0;
+            }
+        }
+
+        /* Floating Duas */
+        .floating-dua {
+            position: fixed;
+            pointer-events: none;
+            z-index: 2;
+            font-family: 'El Messiri', serif;
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: rgba(255, 220, 140, 0.8);
+            text-shadow: 0 0 12px rgba(255, 180, 40, 0.6);
+            animation: floatDua var(--dur) linear infinite;
+            white-space: nowrap;
+            opacity: 0;
+            letter-spacing: 0.5px;
+        }
+
+        @keyframes floatDua {
+            0% {
+                transform: translateY(0) rotate(-5deg);
+                opacity: 0;
+            }
+            15% {
+                opacity: 0.9;
+            }
+            85% {
+                opacity: 0.6;
+            }
+            100% {
+                transform: translateY(-130vh) rotate(5deg);
+                opacity: 0;
+            }
+        }
+
+        /* Mosque silhouette */
+        .mosque-silhouette {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 180px;
+            pointer-events: none;
+            z-index: 1;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 180" preserveAspectRatio="none"><path d="M0 180 L0 120 Q60 80 120 100 Q180 60 240 80 Q300 40 360 70 Q420 30 480 60 Q540 20 600 50 Q660 15 720 45 Q780 10 840 40 Q900 15 960 40 Q1020 25 1080 50 Q1140 40 1200 60 L1200 180 Z" fill="%230a0a20" opacity="0.8"/><path d="M540 50 L560 20 L580 50 M560 20 L560 0 M556 15 L564 15" stroke="%23d4a745" stroke-width="2" fill="none" opacity="0.5"/><circle cx="560" cy="8" r="4" fill="%23d4a745" opacity="0.6"/></svg>') repeat-x bottom;
+            background-size: contain;
+            opacity: 0.9;
+            filter: drop-shadow(0 0 30px rgba(10, 10, 40, 0.8));
+        }
+
+        /* Moon */
+        .moon-container {
+            position: fixed;
+            top: 40px;
+            right: 50px;
+            z-index: 2;
+            pointer-events: none;
+            animation: moonFloat 6s ease-in-out infinite;
+        }
+
+        .moon {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            box-shadow: 20px -12px 0 4px #f7e08a;
+            background: transparent;
+            filter: drop-shadow(0 0 30px rgba(247, 224, 138, 0.9)) drop-shadow(0 0 60px rgba(255, 200, 60, 0.6));
+            position: relative;
+        }
+
+        .moon::after {
+            content: '★';
+            position: absolute;
+            font-size: 1.2rem;
+            color: #fffef0;
+            top: 12px;
+            left: 28px;
+            text-shadow: 0 0 15px #ffcc00, 0 0 30px #ff9900;
+            animation: moonStarTwinkle 2.5s ease-in-out infinite;
+        }
+
+        @keyframes moonFloat {
+            0%,
+            100% {
+                transform: translateY(0) rotate(0deg);
+            }
+            50% {
+                transform: translateY(-12px) rotate(2deg);
+            }
+        }
+
+        @keyframes moonStarTwinkle {
+            0%,
+            100% {
+                opacity: 0.4;
+                transform: scale(0.7);
+            }
+            50% {
+                opacity: 1;
+                transform: scale(1.4);
+            }
+        }
+
+        /* Main container */
+        .container {
+            position: relative;
+            z-index: 3;
+            max-width: 1000px;
+            margin: 30px auto 40px;
+            padding: 40px 30px 70px;
+            background: rgba(5, 5, 25, 0.35);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 2px solid rgba(180, 150, 100, 0.3);
+            border-radius: 40px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.6), 0 0 80px rgba(212, 167, 69, 0.25), inset 0 0 30px rgba(255, 215, 0, 0.05);
+            overflow: hidden;
+        }
+
+        .container::before {
+            content: '';
+            position: absolute;
+            inset: -2px;
+            border-radius: 40px;
+            border: 2px solid rgba(212, 167, 69, 0.3);
+            pointer-events: none;
+            z-index: -1;
+            animation: borderGlow 4s ease-in-out infinite;
+        }
+
+        @keyframes borderGlow {
+            0%,
+            100% {
+                border-color: rgba(212, 167, 69, 0.3);
+                box-shadow: 0 0 15px rgba(212, 167, 69, 0.15) inset;
+            }
+            50% {
+                border-color: rgba(240, 212, 120, 0.5);
+                box-shadow: 0 0 35px rgba(212, 167, 69, 0.3) inset;
+            }
+        }
+
+        /* Verse banner */
+        .verse-banner {
+            background: rgba(255, 215, 0, 0.05);
+            border: 1px solid rgba(180, 150, 100, 0.4);
+            border-radius: 60px;
+            padding: 15px 25px;
+            margin: 0 auto 35px;
+            text-align: center;
+            backdrop-filter: blur(8px);
+            max-width: 700px;
+        }
+
+        .verse-arabic {
+            font-family: 'Aref Ruqaa', serif;
+            font-size: 1.8rem;
+            color: #f7e5a0;
+            direction: rtl;
+            text-shadow: 0 0 15px rgba(255, 200, 60, 0.6);
+            margin-bottom: 8px;
+        }
+
+        .verse-translation {
+            font-style: italic;
+            color: #d4c9a8;
+            font-size: 0.95rem;
+            letter-spacing: 0.5px;
+        }
+
+        /* Greeting */
+        .greeting-section {
+            text-align: center;
+            padding: 10px 20px 30px;
+            position: relative;
+        }
+
+        .greeting-section::before {
+            content: '✦';
+            position: absolute;
+            top: -25px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 2.8rem;
+            color: var(--gold);
+            text-shadow: 0 0 30px rgba(212, 167, 69, 0.8);
+            animation: sparklePulse 2s ease-in-out infinite;
+        }
+
+        @keyframes sparklePulse {
+            0%,
+            100% {
+                opacity: 0.5;
+                transform: translateX(-50%) scale(0.7);
+            }
+            50% {
+                opacity: 1;
+                transform: translateX(-50%) scale(1.2);
+            }
+        }
+
+        .arabic-calligraphy {
+            font-family: 'Aref Ruqaa', serif;
+            font-size: 3rem;
+            font-weight: 700;
+            color: #f7e5a0;
+            text-shadow: 0 0 25px rgba(255, 200, 60, 0.8);
+            margin-bottom: 15px;
+            direction: rtl;
+            animation: glowPulseArabic 3s ease-in-out infinite;
+        }
+
+        @keyframes glowPulseArabic {
+            0%,
+            100% {
+                text-shadow: 0 0 25px rgba(255, 200, 60, 0.8);
+            }
+            50% {
+                text-shadow: 0 0 40px rgba(255, 200, 60, 1), 0 0 70px rgba(255, 160, 30, 0.7);
+            }
+        }
+
+        .eid-label {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.2rem;
+            letter-spacing: 7px;
+            text-transform: uppercase;
+            color: var(--gold-light);
+            margin-bottom: 12px;
+        }
+
+        .greeting {
+            font-size: clamp(2rem, 5vw, 3.5rem);
+            font-weight: 700;
+            color: #fef9e7;
+            text-shadow: 0 0 20px rgba(255, 215, 0, 0.8), 0 0 45px rgba(255, 200, 50, 0.6);
+            animation: glowPulse 3s ease-in-out infinite;
+            cursor: pointer;
+            display: inline-block;
+        }
+
+        @keyframes glowPulse {
+            0%,
+            100% {
+                text-shadow: 0 0 20px rgba(255, 215, 0, 0.8), 0 0 45px rgba(255, 200, 50, 0.6);
+            }
+            50% {
+                text-shadow: 0 0 35px rgba(255, 215, 0, 1), 0 0 70px rgba(255, 200, 50, 0.8);
+            }
+        }
+
+        .subtitle {
+            color: #d4c9a8;
+            margin-top: 15px;
+        }
+
+        /* Cards grid */
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 24px;
+            padding: 20px 10px;
+        }
+
+        .card {
+            background: var(--card-bg);
+            border: 1px solid rgba(180, 150, 100, 0.4);
+            border-radius: 20px;
+            padding: 32px 24px;
+            backdrop-filter: blur(15px);
+            transition: transform 0.2s ease, box-shadow 0.3s;
+            box-shadow: 0 10px 35px rgba(0, 0, 0, 0.4);
+            position: relative;
+            overflow: hidden;
+            cursor: pointer;
+        }
+
+        /* Shimmer sweep */
+        .card::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, transparent 40%, rgba(255, 215, 0, 0.1) 50%, transparent 60%);
+            transform: rotate(45deg);
+            animation: shimmer 4s infinite;
+            pointer-events: none;
+        }
+
+        @keyframes shimmer {
+            0% {
+                transform: translateX(-100%) translateY(-100%) rotate(45deg);
+            }
+            100% {
+                transform: translateX(100%) translateY(100%) rotate(45deg);
+            }
+        }
+
+        .card:hover {
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.6), 0 0 40px rgba(212, 167, 69, 0.45);
+        }
+
+        /* Touch/click ripple effect element */
+        .card .ripple {
+            position: absolute;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(255, 215, 0, 0.7) 0%, rgba(255, 180, 40, 0) 70%);
+            transform: scale(0);
+            animation: rippleEffect 0.6s ease-out forwards;
+            pointer-events: none;
+            z-index: 2;
+        }
+
+        @keyframes rippleEffect {
+            to {
+                transform: scale(4);
+                opacity: 0;
+            }
+        }
+
+        .card-icon {
+            font-size: 2.4rem;
+            display: block;
+            margin-bottom: 14px;
+            animation: iconFloat 2.5s ease-in-out infinite;
+        }
+
+        .card:nth-child(2) .card-icon {
+            animation-delay: 0.3s;
+        }
+
+        .card:nth-child(3) .card-icon {
+            animation-delay: 0.6s;
+        }
+
+        .card:nth-child(4) .card-icon {
+            animation-delay: 0.9s;
+        }
+
+        .card:nth-child(5) .card-icon {
+            animation-delay: 1.2s;
+        }
+
+        .card:nth-child(6) .card-icon {
+            animation-delay: 1.5s;
+        }
+
+        @keyframes iconFloat {
+            0%,
+            100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-7px);
+            }
+        }
+
+        .card h3 {
+            color: var(--gold-light);
+            margin-bottom: 10px;
+        }
+
+        .card p {
+            color: #c8c4d8;
+            line-height: 1.8;
+        }
+
+        /* Duas section */
+        .duas-title {
+            text-align: center;
+            font-size: 2rem;
+            color: #f7e5a0;
+            margin: 40px 0 20px;
+            text-shadow: 0 0 15px rgba(255, 200, 60, 0.7);
+            letter-spacing: 2px;
+            font-family: 'Aref Ruqaa', 'El Messiri', serif;
+        }
+
+        .dua-card {
+            background: var(--dua-bg);
+            border: 1px solid rgba(180, 150, 100, 0.5);
+            border-radius: 20px;
+            padding: 24px 20px;
+            margin-bottom: 18px;
+            text-align: center;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            cursor: pointer;
+        }
+
+        .dua-card:hover {
+            border-color: rgba(255, 215, 0, 0.6);
+            box-shadow: 0 0 30px rgba(255, 200, 60, 0.25);
+            transform: translateY(-4px);
+        }
+
+        .dua-card::before {
+            content: '🤲';
+            position: absolute;
+            left: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 1.8rem;
+            opacity: 0.7;
+        }
+
+        .dua-card .dua-text {
+            font-size: 1.2rem;
+            color: #fef9e7;
+            font-weight: 600;
+            letter-spacing: 0.3px;
+            padding-left: 30px;
+            line-height: 1.6;
+        }
+
+        .footer {
+            text-align: center;
+            margin-top: 30px;
+            color: #b8a87c;
+            letter-spacing: 2px;
+        }
+
+        /* Mouse trail */
+        .mouse-star {
+            position: fixed;
+            pointer-events: none;
+            z-index: 999;
+            width: 6px;
+            height: 6px;
+            background: #ffdf80;
+            border-radius: 50%;
+            box-shadow: 0 0 12px #ffcc00, 0 0 25px #ff9900;
+            animation: fadeStar 0.8s ease-out forwards;
+        }
+
+        @keyframes fadeStar {
+            0% {
+                opacity: 1;
+                transform: scale(1);
+            }
+            100% {
+                opacity: 0;
+                transform: scale(0);
+            }
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .container {
+                margin: 15px;
+                padding: 25px 15px 50px;
+            }
+            .arabic-calligraphy {
+                font-size: 2rem;
+            }
+            .verse-arabic {
+                font-size: 1.4rem;
+            }
+            .dua-card .dua-text {
+                font-size: 1rem;
+            }
+            .moon-container {
+                top: 20px;
+                right: 20px;
+            }
+            .moon {
+                width: 60px;
+                height: 60px;
+                box-shadow: 16px -9px 0 3px #f7e08a;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <canvas id="starsCanvas"></canvas>
+    <div class="lanterns" id="lanternsContainer"></div>
+    <div id="takbeerContainer" style="position:fixed; inset:0; pointer-events:none; z-index:2;"></div>
+    <div id="duaFloatingContainer" style="position:fixed; inset:0; pointer-events:none; z-index:2;"></div>
+    <div class="mosque-silhouette"></div>
+
+    <div class="moon-container">
+        <div class="moon"></div>
+    </div>
+
+    <div class="container">
+        <!-- Quranic Verse -->
+        <div class="verse-banner">
+            <p class="verse-arabic">لَن يَنَالَ ٱللَّهَ لُحُومُهَا وَلَا دِمَآؤُهَا وَلَـٰكِن يَنَالُهُ ٱلتَّقْوَىٰ مِنكُمْ</p>
+            <p class="verse-translation">"Their meat will not reach Allah, nor will their blood, but what reaches Him is piety from you." (Quran 22:37)</p>
+        </div>
+
+        <section class="greeting-section">
+            <p class="arabic-calligraphy">عيد أضحى مبارك</p>
+            <p class="eid-label">✨ Eid ul Adha Mubarak ✨</p>
+            <h1 class="greeting" id="greetingText">Assalamu Alaikum, <span id="guestName">Dear Guest</span>!</h1>
+            <p class="subtitle">🌙 May the blessings of this sacred day fill your heart with joy, peace, and divine light. 🌙</p>
+        </section>
+
+        <!-- Eid Notes Cards -->
+        <div class="cards-grid" id="eidCardsGrid">
+            <div class="card"><span class="card-icon">🕋</span><h3>The Spirit of Sacrifice</h3><p>Eid ul Adha commemorates Prophet Ibrahim's (AS) unwavering faith and his readiness to sacrifice his beloved son for Allah.</p></div>
+            <div class="card"><span class="card-icon">💫</span><h3>Faith & Obedience</h3><p>True sacrifice is surrendering what we hold dearest out of love and devotion to the Almighty, trusting His wisdom.</p></div>
+            <div class="card"><span class="card-icon">🤲</span><h3>Sharing Blessings</h3><p>The Qurbani meat is shared with family, friends, and the less fortunate — a beautiful act of generosity and empathy.</p></div>
+            <div class="card"><span class="card-icon">🌟</span><h3>Gratitude & Reflection</h3><p>This Eid invites us to pause, count our blessings, and renew our commitment to righteousness and gratitude.</p></div>
+            <div class="card"><span class="card-icon">🕌</span><h3>Unity & Togetherness</h3><p>From the congregational prayer to festive gatherings, this blessed day unites the global Ummah in love and solidarity.</p></div>
+            <div class="card"><span class="card-icon">🌿</span><h3>Renewal & Forgiveness</h3><p>Let us cleanse our hearts, seek forgiveness, and embrace a fresh beginning filled with mercy, hope, and compassion.</p></div>
+        </div>
+
+        <!-- Duas Section -->
+        <h2 class="duas-title">🤲 Heartfelt Duas for You 🤲</h2>
+        <div id="duaCardsContainer">
+            <div class="dua-card"><span class="dua-text">🌟 May Allah make you successful in this life and the Hereafter, and grant you the highest ranks of Jannah.</span></div>
+            <div class="dua-card"><span class="dua-text">💖 May Allah accept all your good deeds, forgive your shortcomings, and shower His endless mercy upon you and your family.</span></div>
+            <div class="dua-card"><span class="dua-text">🌺 May Allah bless you with health, wealth, and happiness, and fill your home with love and tranquility.</span></div>
+            <div class="dua-card"><span class="dua-text">🕊️ May Allah protect you from all harm, guide you on the straight path, and make you a source of goodness for others.</span></div>
+            <div class="dua-card"><span class="dua-text">✨ May Allah grant you patience in trials, gratitude in blessings, and a heart always connected to Him.</span></div>
+            <div class="dua-card"><span class="dua-text">🌙 May this Eid bring you closer to Allah, strengthen your faith, and be a means of immense barakah in your life. Ameen.</span></div>
+        </div>
+
+        <div class="footer">🌟 May Allah accept your sacrifices and bless you abundantly. Ameen. 🌟</div>
+    </div>
+
+    <script>
+        (function() {
+            // ========== NAME PROMPT ==========
+            const guestNameSpan = document.getElementById('guestName');
+            const name = prompt('🌙✨ Assalamu Alaikum! ✨🌙\n\nPlease enter your name for a personal Eid greeting:');
+            if (name && name.trim().length > 0) {
+                const formatted = name.trim().split(' ').map(w => w.charAt(0).toUpperCase() + w.slice(1).toLowerCase()).join(' ');
+                guestNameSpan.textContent = formatted;
+            } else {
+                guestNameSpan.textContent = 'Dear Believer';
+            }
+
+            // ========== STARFIELD CANVAS ==========
+            const canvas = document.getElementById('starsCanvas');
+            const ctx = canvas.getContext('2d');
+            let width, height;
+            const particles = [],
+                shootingStars = [],
+                twinkleStars = [];
+
+            function resize() {
+                width = canvas.width = window.innerWidth;
+                height = canvas.height = window.innerHeight;
+                initTwinkleStars();
+            }
+            window.addEventListener('resize', resize);
+            resize();
+
+            function initTwinkleStars() {
+                twinkleStars.length = 0;
+                const count = Math.min(Math.floor((width * height) / 3500), 250);
+                for (let i = 0; i < count; i++) {
+                    twinkleStars.push({
+                        x: Math.random() * width,
+                        y: Math.random() * height,
+                        radius: Math.random() * 1.8 + 0.3,
+                        baseOpacity: Math.random() * 0.6 + 0.25,
+                        twinkleSpeed: Math.random() * 0.02 + 0.005,
+                        twinkleOffset: Math.random() * Math.PI * 2,
+                        color: Math.random() < 0.25 ? `hsl(${40+Math.random()*25},80%,${70+Math.random()*25}%)` : `hsl(${210+Math.random()*40},30%,${75+Math.random()*20}%)`
+                    });
+                }
+            }
+
+            function createParticle() {
+                return {
+                    x: Math.random() * width,
+                    y: Math.random() * -height * 0.5 - 20,
+                    size: Math.random() * 3 + 1,
+                    speed: Math.random() * 0.9 + 0.3,
+                    opacity: Math.random() * 0.7 + 0.3,
+                    twinkleSpeed: Math.random() * 0.03 + 0.01,
+                    twinkleOffset: Math.random() * Math.PI * 2,
+                    drift: (Math.random() - 0.5) * 0.5,
+                    color: Math.random() < 0.4 ? `hsl(${42+Math.random()*20},85%,${65+Math.random()*30}%)` : `hsl(${220+Math.random()*30},25%,${78+Math.random()*18}%)`
+                };
+            }
+            const particleCount = Math.min(Math.floor((width * height) / 5500), 200);
+            for (let i = 0; i < particleCount; i++) {
+                const p = createParticle();
+                p.y = Math.random() * height;
+                particles.push(p);
+            }
+
+            function createShootingStar() {
+                const startX = Math.random() * width * 0.9,
+                    startY = Math.random() * height * 0.5;
+                const angle = (Math.random() * 0.6 + 0.3) * Math.PI,
+                    speed = Math.random() * 10 + 12;
+                return {
+                    x: startX,
+                    y: startY,
+                    vx: Math.cos(angle) * speed,
+                    vy: Math.sin(angle) * speed,
+                    trail: [],
+                    maxTrail: 24,
+                    life: 0,
+                    maxLife: 70,
+                    opacity: 1,
+                    headRadius: 2.2
+                };
+            }
+            let shootingStarTimer = 0;
+
+            function animateStars() {
+                ctx.clearRect(0, 0, width, height);
+                twinkleStars.forEach(s => {
+                    const tw = Math.sin(Date.now() * s.twinkleSpeed + s.twinkleOffset) * 0.5 + 0.5;
+                    ctx.globalAlpha = s.baseOpacity * (0.5 + tw * 0.5);
+                    ctx.fillStyle = s.color;
+                    ctx.beginPath();
+                    ctx.arc(s.x, s.y, s.radius, 0, Math.PI * 2);
+                    ctx.fill();
+                });
+                ctx.globalAlpha = 1;
+                particles.forEach(p => {
+                    p.y += p.speed;
+                    p.x += p.drift + Math.sin(Date.now() * 0.001 + p.twinkleOffset) * 0.2;
+                    if (p.y > height + 20) { p.y = -20;
+                        p.x = Math.random() * width; }
+                    if (p.x > width + 20) p.x = -20;
+                    if (p.x < -20) p.x = width + 20;
+                    const tw = Math.sin(Date.now() * p.twinkleSpeed + p.twinkleOffset) * 0.5 + 0.5;
+                    ctx.fillStyle = p.color;
+                    ctx.globalAlpha = p.opacity * (0.5 + tw * 0.5);
+                    ctx.beginPath();
+                    ctx.arc(p.x, p.y, p.size * 0.55, 0, Math.PI * 2);
+                    ctx.fill();
+                });
+                ctx.globalAlpha = 1;
+                shootingStarTimer++;
+                if (shootingStarTimer > 180 + Math.random() * 120 && shootingStars.length < 3) {
+                    shootingStars.push(createShootingStar());
+                    shootingStarTimer = 0;
+                }
+                for (let i = shootingStars.length - 1; i >= 0; i--) {
+                    const ss = shootingStars[i];
+                    ss.x += ss.vx;
+                    ss.y += ss.vy;
+                    ss.life++;
+                    ss.trail.push({ x: ss.x, y: ss.y });
+                    while (ss.trail.length > ss.maxTrail) ss.trail.shift();
+                    for (let t = 1; t < ss.trail.length; t++) {
+                        const prog = t / ss.trail.length;
+                        ctx.strokeStyle = `rgba(255,240,210,${prog*ss.opacity*0.85})`;
+                        ctx.lineWidth = prog * ss.headRadius * 2.8;
+                        ctx.beginPath();
+                        ctx.moveTo(ss.trail[t - 1].x, ss.trail[t - 1].y);
+                        ctx.lineTo(ss.trail[t].x, ss.trail[t].y);
+                        ctx.stroke();
+                    }
+                    const glow = ctx.createRadialGradient(ss.x, ss.y, 0, ss.x, ss.y, ss.headRadius * 5);
+                    glow.addColorStop(0, 'rgba(255,255,240,1)');
+                    glow.addColorStop(0.5, 'rgba(255,200,100,0.5)');
+                    glow.addColorStop(1, 'rgba(255,100,10,0)');
+                    ctx.fillStyle = glow;
+                    ctx.beginPath();
+                    ctx.arc(ss.x, ss.y, ss.headRadius * 5, 0, Math.PI * 2);
+                    ctx.fill();
+                    if (ss.x > width + 50 || ss.x < -50 || ss.y > height + 50 || ss.life > ss.maxLife) {
+                        shootingStars.splice(i, 1);
+                    }
+                }
+                requestAnimationFrame(animateStars);
+            }
+            animateStars();
+            setInterval(() => {
+                const target = Math.min(Math.floor((width * height) / 5500), 200);
+                while (particles.length < target) {
+                    const p = createParticle();
+                    p.y = Math.random() * height;
+                    particles.push(p);
+                }
+                while (particles.length > target + 15) particles.pop();
+            }, 3000);
+
+            // ========== LANTERNS ==========
+            const lanternsContainer = document.getElementById('lanternsContainer');
+
+            function createLantern() {
+                const l = document.createElement('div');
+                l.className = 'lantern';
+                l.style.left = Math.random() * 95 + '%';
+                l.style.setProperty('--duration', (Math.random() * 12 + 15) + 's');
+                l.style.setProperty('--delay', Math.random() * 10 + 's');
+                const flame = document.createElement('div');
+                flame.className = 'flame';
+                l.appendChild(flame);
+                lanternsContainer.appendChild(l);
+                setTimeout(() => {
+                    if (l.parentNode) l.remove();
+                }, (parseFloat(l.style.getPropertyValue('--duration')) + parseFloat(l.style.getPropertyValue('--delay'))) * 1000 + 2000);
+            }
+            for (let i = 0; i < 6; i++) setTimeout(createLantern, i * 400);
+            setInterval(createLantern, 4500);
+
+            // ========== FLOATING TAKBEER ==========
+            const takbeerContainer = document.getElementById('takbeerContainer');
+            const takbeerPhrases = ['الله أكبر الله أكبر', 'لا إله إلا الله', 'الله أكبر الله أكبر ولله الحمد', 'سبحان الله وبحمده'];
+
+            function floatTakbeer() {
+                const el = document.createElement('div');
+                el.className = 'floating-takbeer';
+                el.textContent = takbeerPhrases[Math.floor(Math.random() * takbeerPhrases.length)];
+                el.style.left = Math.random() * 80 + '%';
+                el.style.bottom = '-10%';
+                el.style.setProperty('--dur', (Math.random() * 18 + 12) + 's');
+                takbeerContainer.appendChild(el);
+                setTimeout(() => el.remove(), 35000);
+            }
+            setInterval(floatTakbeer, 6000);
+            floatTakbeer();
+
+            // ========== FLOATING DUAS ==========
+            const duaContainer = document.getElementById('duaFloatingContainer');
+            const duaPhrases = [
+                '✨ May Allah grant you success ✨',
+                '💖 May Allah accept your deeds 💖',
+                '🌟 May Allah bless your family 🌟',
+                '🕊️ May Allah guide you always 🕊️',
+                '🌺 May Allah fill your life with joy 🌺',
+                '🤲 Ameen ya Rabb 🤲'
+            ];
+
+            function floatDua() {
+                const el = document.createElement('div');
+                el.className = 'floating-dua';
+                el.textContent = duaPhrases[Math.floor(Math.random() * duaPhrases.length)];
+                el.style.left = Math.random() * 80 + '%';
+                el.style.bottom = '-10%';
+                el.style.setProperty('--dur', (Math.random() * 20 + 15) + 's');
+                duaContainer.appendChild(el);
+                setTimeout(() => el.remove(), 40000);
+            }
+            setInterval(floatDua, 5000);
+            floatDua();
+
+            // ========== CARD INTERACTIONS (touch/click ripple + tilt on mouse) ==========
+            function addCardInteractions(card) {
+                // Mouse tilt (desktop)
+                card.addEventListener('mousemove', (e) => {
+                    const rect = card.getBoundingClientRect();
+                    const x = e.clientX - rect.left;
+                    const y = e.clientY - rect.top;
+                    const centerX = rect.width / 2;
+                    const centerY = rect.height / 2;
+                    const rotateX = ((y - centerY) / centerY) * 6;
+                    const rotateY = ((x - centerX) / centerX) * -6;
+                    card.style.transform = `perspective(600px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-4px)`;
+                });
+                card.addEventListener('mouseleave', () => {
+                    card.style.transform = 'perspective(600px) rotateX(0) rotateY(0) translateY(0)';
+                });
+
+                // Touch/click ripple + sparkle burst
+                card.addEventListener('click', function(e) {
+                    const rect = card.getBoundingClientRect();
+                    const x = e.clientX - rect.left;
+                    const y = e.clientY - rect.top;
+                    const size = Math.max(rect.width, rect.height);
+
+                    // Remove existing ripples
+                    card.querySelectorAll('.ripple').forEach(r => r.remove());
+
+                    const ripple = document.createElement('div');
+                    ripple.className = 'ripple';
+                    ripple.style.left = x + 'px';
+                    ripple.style.top = y + 'px';
+                    ripple.style.width = size + 'px';
+                    ripple.style.height = size + 'px';
+                    card.appendChild(ripple);
+
+                    // Mini sparkle burst from the click point
+                    const sparkCount = 10;
+                    for (let i = 0; i < sparkCount; i++) {
+                        const spark = document.createElement('div');
+                        const sparkSize = Math.random() * 6 + 4;
+                        const angle = Math.random() * Math.PI * 2;
+                        const dist = Math.random() * 40 + 20;
+                        spark.style.cssText = `
+                            position: fixed;
+                            left: ${e.clientX}px;
+                            top: ${e.clientY}px;
+                            width: ${sparkSize}px;
+                            height: ${sparkSize}px;
+                            background: radial-gradient(circle, #ffdf80, #ff9900);
+                            border-radius: 50%;
+                            pointer-events: none;
+                            z-index: 9999;
+                            box-shadow: 0 0 10px #ffcc00;
+                            transition: all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+                            opacity: 1;
+                        `;
+                        document.body.appendChild(spark);
+                        requestAnimationFrame(() => {
+                            spark.style.transform = `translate(${Math.cos(angle)*dist}px, ${Math.sin(angle)*dist}px) scale(0)`;
+                            spark.style.opacity = '0';
+                        });
+                        setTimeout(() => spark.remove(), 550);
+                    }
+
+                    // Slight scale bounce on the card itself
+                    card.style.transform = 'scale(0.97)';
+                    setTimeout(() => {
+                        card.style.transform = '';
+                    }, 150);
+                });
+            }
+
+            // Apply to all cards (Eid notes and Dua cards)
+            document.querySelectorAll('.card, .dua-card').forEach(card => {
+                addCardInteractions(card);
+            });
+
+            // ========== SPARKLE BURST ON GREETING CLICK ==========
+            document.getElementById('greetingText').addEventListener('click', function(e) {
+                for (let i = 0; i < 22; i++) {
+                    const spark = document.createElement('div');
+                    const size = Math.random() * 10 + 6,
+                        angle = Math.random() * Math.PI * 2,
+                        dist = Math.random() * 80 + 40;
+                    spark.style.cssText = `position:fixed; left:${e.clientX}px; top:${e.clientY}px; width:${size}px; height:${size}px; background:radial-gradient(circle,#ffdf80,#ff9900); border-radius:50%; pointer-events:none; z-index:999; box-shadow:0 0 15px #ffcc00; transition:all 0.8s cubic-bezier(0.25,0.46,0.45,0.94); opacity:1;`;
+                    document.body.appendChild(spark);
+                    requestAnimationFrame(() => {
+                        spark.style.transform = `translate(${Math.cos(angle)*dist}px,${Math.sin(angle)*dist}px) scale(0)`;
+                        spark.style.opacity = '0';
+                    });
+                    setTimeout(() => spark.remove(), 850);
+                }
+            });
+
+            // ========== MOUSE TRAIL STARS ==========
+            document.addEventListener('mousemove', function(e) {
+                const star = document.createElement('div');
+                star.className = 'mouse-star';
+                star.style.left = e.clientX - 3 + 'px';
+                star.style.top = e.clientY - 3 + 'px';
+                document.body.appendChild(star);
+                setTimeout(() => star.remove(), 800);
+            });
+
+            // ========== ADDITIONAL FLOATING STAR GROUPS (subtle enhancement) ==========
+            function createFloatingStarGroup() {
+                const group = document.createElement('div');
+                group.style.cssText = 'position:fixed; pointer-events:none; z-index:2;';
+                const baseX = Math.random() * window.innerWidth;
+                const baseY = Math.random() * window.innerHeight * 0.8 + window.innerHeight * 0.1;
+                group.style.left = baseX + 'px';
+                group.style.top = baseY + 'px';
+                for (let i = 0; i < 4; i++) {
+                    const star = document.createElement('div');
+                    const size = Math.random() * 3 + 2;
+                    star.style.cssText = `
+                        position: absolute;
+                        width: ${size}px;
+                        height: ${size}px;
+                        background: #ffdf80;
+                        border-radius: 50%;
+                        box-shadow: 0 0 8px #ffcc00;
+                        animation: miniStarFloat ${Math.random()*3+2}s ease-in-out infinite;
+                        animation-delay: ${Math.random()*2}s;
+                        transform: translate(${Math.random()*20-10}px, ${Math.random()*20-10}px);
+                    `;
+                    group.appendChild(star);
+                }
+                document.body.appendChild(group);
+                setTimeout(() => group.remove(), 8000);
+            }
+            setInterval(createFloatingStarGroup, 5000);
+            createFloatingStarGroup();
+
+            // Add keyframes for mini stars (injected via style)
+            const styleSheet = document.createElement("style");
+            styleSheet.textContent = `
+                @keyframes miniStarFloat {
+                    0%,100% { opacity:0.3; transform: translate(0,0) scale(1); }
+                    50% { opacity:1; transform: translate(5px,-10px) scale(1.3); }
+                }
+            `;
+            document.head.appendChild(styleSheet);
+
+            console.log('🌙✨ Eid ul Adha Mubarak! ✨🌙');
+            console.log('🤲 Duas and blessings for you and your loved ones.');
+        })();
+    </script>
+</body>
+</html>
